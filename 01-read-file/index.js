@@ -1,5 +1,5 @@
 const fs = require('fs');
-
-const pathToFile = 'text.txt';
-const data = fs.readFileSync(pathToFile, { encoding: 'utf-8', flag: 'r' });
-console.log(data);
+const path = require('path');
+const { stdout } = require('process');
+const input = fs.createReadStream(path.join(__dirname, 'text.txt'), 'utf8');
+input.on('data', data => stdout.write(data));
